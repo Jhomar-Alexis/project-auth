@@ -1,0 +1,29 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "prisma": "prisma"
+  },
+  "dependencies": {
+    "@ruheni/db-diff": "^0.2.9",
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
+    "better-auth": "^1.0.15",
+    "nuxt": "^3.14.1592",
+    "vue": "latest",
+    "vue-router": "latest"
+  },
+  "prisma": {
+    "seed": "node prisma/seed.js"
+  },
+  "devDependencies": {
+    "@prisma/client": "^6.0.1",
+    "@types/node": "^22.10.2"
+  }
+}

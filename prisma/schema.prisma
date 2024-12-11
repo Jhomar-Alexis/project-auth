@@ -1,0 +1,42 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model Versions {
+    version BigInt    @id
+    name    String?
+    md5     String?
+    runAt   DateTime? @map("run_at") @db.Timestamptz
+
+    @@map("versions")
+    @@ignore
+}
+
+model User {
+    id        Int      @id @default(autoincrement())
+    name      String?
+    password  String
+    roleId    Int?     @map("role_id")
+    role      Role?    @relation(fields: [roleId], references: [id])
+    salt      String
+    status    Boolean  @default(true)
+    createdAt DateTime @default(now()) @map("created_at")
+    email     String?  @unique
+
+    @@map("users")
+}
+
+model Role {
+    id        Int      @id @default(autoincrement())
+    name      String   @unique
+    users     User[]
+    createdAt DateTime @default(now()) @map("created_at")
+    status    Boolean  @default(true)
+
+    @@map("roles")
+}
